@@ -1,12 +1,4 @@
-const knex = require('knex')({
-  client: 'pg',
-  connection: {
-    host: 'localhost',
-    port: 5432,
-    user: 'postgres',
-    password: 'postgres',
-    database: 'myapp_test'
-  }
-})
+const knex = require('knex')
+const config = require('./config')
 
-module.exports = knex
+module.exports = knex(config)

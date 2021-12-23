@@ -1,12 +1,13 @@
 const knex = require('../database')
 
-const create = (newTrainer) => {
-  return knex('trainers').insert(newTrainer).then(result => {
-    console.log(result)
-    return result
-  }).catch((error) => {
-    throw error
-  })
+const create = async (newTrainer) => {
+  const [firstRow] = await knex('trainers')
+    .insert(newTrainer)
+    .returning(['*'])
+    .catch((error) => {
+      throw error
+    })
+  return firstRow
 }
 
 module.exports = {
